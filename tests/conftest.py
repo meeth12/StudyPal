@@ -6,7 +6,10 @@ import types
 import importlib
 import pytest
 
-
+ROOT = os.path.dirname(os.path.dirname(__file__))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+    
 def _make_fake_firebase():
     """Build a fake firebase_admin package with credentials, firestore, storage"""
     fa = types.ModuleType("firebase_admin")
