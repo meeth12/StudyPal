@@ -1,6 +1,5 @@
 name: Python CI
-env:
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
 on:
   push:
     branches: [ main ]
@@ -9,8 +8,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
     - uses: actions/checkout@v3
