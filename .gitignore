@@ -2,6 +2,8 @@
 .env
 studyPal/.env
 
+studyPal/adminKey.json
+
 # Ignore config files that might contain secrets
 config.json
 *.config.json
