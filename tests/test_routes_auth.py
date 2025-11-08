@@ -19,7 +19,7 @@ def test_signup_post_creates_user_and_redirects(client, monkeypatch):
     main = importlib.import_module("studyPal.main")
     def fake_create_user(db, name, email, password):
         created.update(dict(name=name, email=email, password=password))
-    monkeypatch.setattr(studyPal.main, "create_user", fake_create_user)
+    monkeypatch.setattr(main, "create_user", fake_create_user)
 
     resp = client.post("/signup", data={"name":"N", "email":"e@e.com", "password":"pw"}, follow_redirects=False)
     assert resp.status_code in (301, 302)
