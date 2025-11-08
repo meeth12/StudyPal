@@ -5,7 +5,14 @@ import firebase_admin
 import json
 from firebase_admin import credentials, firestore, storage
 from openai import OpenAI
-from functions import create_user, login_user, aiSummariser, save_note, generate_flashcards, get_flashcards
+from .functions import (
+    create_user,
+    login_user,
+    aiSummariser,
+    save_note,
+    generate_flashcards,
+    get_flashcards,
+)
 from dotenv import load_dotenv 
 from pypdf import PdfReader
 from docx import Document
