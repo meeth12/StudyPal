@@ -18,7 +18,21 @@ load_dotenv()
 # -------------------------
 # Initialize Firebase
 # -------------------------
-cred = credentials.Certificate("adminKey.json")
+json_str = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+
+if json_str:
+    # Load from GitHub Secret / env var
+    service_account_info = json.loads(json_str)
+    cred = credentials.Certificate(service_account_info)
+elif os.path.exists("adminKey.json"):
+    # Local fallback (optional)
+    cred = credentials.Certificate("adminKey.json")
+else:
+    raise RuntimeError(
+        "Service account credentials not set. "
+        "Set GOOGLE_APPLICATION_CREDENTIALS_JSON or provide adminKey.json."
+    )
+
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 bucket = storage.bucket('studypal-93412.firebasestorage.app')  # <-- Specify bucket name explicitly
