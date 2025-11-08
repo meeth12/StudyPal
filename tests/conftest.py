@@ -167,9 +167,12 @@ def app(monkeypatch):
     monkeypatch.setenv("FLASK_ENV", "testing")
 
     # Import (or reload) main so top-level init runs once
-    if "main" in sys.modules:
-        del sys.modules["main"]
-    mod = importlib.import_module("main")
+    # after
+    if "studyPal.main" in sys.modules:
+        del sys.modules["studyPal.main"]
+    mod = importlib.import_module("studyPal.main")
+
+
     mod.app.testing = True
     return mod.app
 
