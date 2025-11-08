@@ -23,4 +23,4 @@ venv/
 tmp/
 temp/
 
-
+.DS_Store
