@@ -2,5 +2,5 @@
 import importlib
 
 def test_health_ok():
-    m = importlib.import_module("main")
+    m = importlib.import_module("studyPal.main")
     assert getattr(m, "health", lambda: None)() == "ok"
