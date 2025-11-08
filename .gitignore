@@ -1,0 +1,24 @@
+# Ignore environment variable files with secrets
+.env
+studyPal/.env
+
+# Ignore config files that might contain secrets
+config.json
+*.config.json
+
+# Ignore node modules if this is a JS/TS project
+node_modules/
+
+# Ignore Python virtual environments if applicable
+venv/
+.env/
+
+# Ignore system files (macOS)
+.DS_Store
+
+# Ignore logs and temporary files
+*.log
+tmp/
+temp/
+
+
