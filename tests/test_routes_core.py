@@ -19,7 +19,7 @@ def test_flashcards_requires_login(client):
 
 def test_flashcards_ok_with_login(client, monkeypatch):
     login(client)
-    main = importlib.import_module("main")
+    main = importlib.import_module("studyPal.main")
     def fake_get_flashcards(db, user_id, note_id):
         return [{"q":"Q1","a":"A1"}]
     monkeypatch.setattr(main, "get_flashcards", fake_get_flashcards)
@@ -29,7 +29,7 @@ def test_flashcards_ok_with_login(client, monkeypatch):
 
 def test_edit_note_save_creates_note_and_redirects(client, monkeypatch):
     login(client)
-    main = importlib.import_module("main")
+    main = importlib.import_module("studyPal.main")
     calls = {}
     monkeypatch.setattr(main, "save_note", lambda db, uid, text, _none, title: "note123")
     monkeypatch.setattr(main, "generate_flashcards", lambda db, uid, nid, text, client: calls.setdefault("gen", True))
@@ -40,7 +40,7 @@ def test_edit_note_save_creates_note_and_redirects(client, monkeypatch):
 
 def test_edit_note_summarise_renders(client, monkeypatch):
     login(client)
-    main = importlib.import_module("main")
+    main = importlib.import_module("studyPal.main")
     monkeypatch.setattr(main, "aiSummariser", lambda text, client: "SUM")
     resp = client.post("/edit_note", data={"title":"T","notes":"Body","action":"summarise"})
     assert resp.status_code == 200
